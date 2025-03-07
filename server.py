@@ -7,12 +7,14 @@ import datetime
 app = FastAPI()
 
 # Allow frontend (localhost:4200) to access the API
+from fastapi.middleware.cors import CORSMiddleware
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:4300"],  # Add your frontend domain in production
+    allow_origins=["*"],  # 🔥 Allow all origins (or specify frontend domain)
     allow_credentials=True,
-    allow_methods=["*"],  # Allow all HTTP methods (GET, POST, etc.)
-    allow_headers=["*"],  # Allow all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Generate mock acceleration data for multiple VINs
